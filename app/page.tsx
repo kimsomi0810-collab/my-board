@@ -10,15 +10,26 @@ interface Cat {
   created_at: string;
 }
 
-async function getCats(): Promise<Cat[]> {
+async function getCats(sortBy: string): Promise<Cat[]> {
+  const orderBy =
+    sortBy === 'likes'
+      ? 'likes DESC, id DESC'
+      : 'created_at DESC, id DESC';
+
   const result = await pool.query(
-    'SELECT * FROM cats ORDER BY created_at DESC'
+    `SELECT * FROM cats ORDER BY ${orderBy}`
   );
   return result.rows;
 }
 
-export default async function Home() {
-  const cats = await getCats();
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ sort?: string }>;
+}) {
+  const params = await searchParams;
+  const sortBy = params.sort || 'recent';
+  const cats = await getCats(sortBy);
 
   return (
     <div className="max-w-6xl mx-auto p-6">
@@ -29,6 +40,29 @@ export default async function Home() {
           className="bg-pink-500 hover:bg-pink-600 text-white px-5 py-2 rounded-lg font-medium"
         >
           ✏️ 추가하기
+        </Link>
+      </div>
+
+      <div className="flex gap-2 mb-6">
+        <Link
+          href="/?sort=recent"
+          className={`px-4 py-2 rounded-full text-sm font-medium ${
+            sortBy === 'recent'
+              ? 'bg-gray-900 text-white'
+              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+          }`}
+        >
+          🆕 최신순
+        </Link>
+        <Link
+          href="/?sort=likes"
+          className={`px-4 py-2 rounded-full text-sm font-medium ${
+            sortBy === 'likes'
+              ? 'bg-pink-500 text-white'
+              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+          }`}
+        >
+          ❤️ 인기순
         </Link>
       </div>
 
