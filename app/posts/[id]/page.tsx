@@ -41,13 +41,13 @@ export default async function CatDetailPage({
   return (
     <div className="max-w-3xl mx-auto p-6">
       <div className="mb-4">
-        <Link href="/" className="text-gray-600 hover:text-gray-800">
-          ← 도감으로 돌아가기
+        <Link href="/" className="text-gray-600 hover:text-gray-800 font-bold">
+          ⬅ 뒤로가기
         </Link>
       </div>
 
       <article className="border rounded-2xl overflow-hidden bg-white">
-        <div className="aspect-square bg-gray-100">
+        <div className="h-[480px] bg-gray-100 flex items-center justify-center">
           <img
             src={cat.image_url}
             alt={cat.name}
@@ -74,12 +74,6 @@ export default async function CatDetailPage({
       </article>
 
       <div className="flex gap-2 justify-end mt-4">
-        <Link
-          href={`/posts/${cat.id}/edit`}
-          className="px-4 py-2 border rounded-lg hover:bg-gray-50"
-        >
-          ✏️ 수정
-        </Link>
         <DeleteButton postId={cat.id} />
       </div>
     </div>

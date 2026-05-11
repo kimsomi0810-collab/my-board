@@ -13,7 +13,7 @@ export default function DeleteButton({ postId }: { postId: number }) {
     setIsDeleting(true);
 
     try {
-      const res = await fetch(`/api/posts/${postId}`, {
+      const res = await fetch(`/api/cats/${postId}`, {
         method: 'DELETE',
       });
 

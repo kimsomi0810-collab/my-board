@@ -34,10 +34,10 @@ export default async function Home({
   return (
     <div className="max-w-6xl mx-auto p-6">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-4xl font-bold">🐱 우리 동네 고양이 도감</h1>
+        <h1 className="text-4xl font-bold">📸 뉴턴 & 에디슨의 순간 포착</h1>
         <Link
           href="/posts/new"
-          className="bg-pink-500 hover:bg-pink-600 text-white px-5 py-2 rounded-lg font-medium"
+          className="bg-blue-500 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-medium"
         >
           ✏️ 추가하기
         </Link>
@@ -58,7 +58,7 @@ export default async function Home({
           href="/?sort=likes"
           className={`px-4 py-2 rounded-full text-sm font-medium ${
             sortBy === 'likes'
-              ? 'bg-pink-500 text-white'
+              ? 'bg-blue-500 text-white'
               : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
           }`}
         >
