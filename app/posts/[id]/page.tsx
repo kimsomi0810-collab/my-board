@@ -74,6 +74,12 @@ export default async function CatDetailPage({
       </article>
 
       <div className="flex gap-2 justify-end mt-4">
+        <Link
+    href={`/posts/${cat.id}/edit`}
+    className="px-4 py-2 border rounded-lg hover:bg-gray-50"
+  >
+    ✏️ 수정
+  </Link>
         <DeleteButton postId={cat.id} />
       </div>
     </div>
